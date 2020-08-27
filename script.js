@@ -2,31 +2,36 @@
 // is a learning tool and not a full-fledged node app.
 
 
+var UserWinCounter = 0;
+var CompWinCounter = 0;
+
 var main = function (input) {
   var rpcGameOutput = rockPaperScissors();
-  console.log (rpcGameOutput)
-
-  if (input == rpcGameOutput ) {
-    var myOutputValue = 'draw';
+  console.log(rpcGameOutput)
+  if (input == "rock" && rpcGameOutput == "scissors") {
+    var myOutputValue = 'Win'
+    UserWinCounter += 1
+      ;
+  } else if (input == "scissors" && rpcGameOutput == "paper") {
+    var myOutputValue = 'Win'
+    UserWinCounter += 1;
+  } else if (input == "paper" && rpcGameOutput == "rock") {
+    var myOutputValue = 'Win'
+    UserWinCounter += 1;
+  } else if (input == rpcGameOutput) {
+    var myOutputValue = 'Draw';
+  } else {
+    var myOutputValue = 'Lose'
+    CompWinCounter += 1;
   }
-  
-  else if ((input == 'paper' && rpcGameOutput == 'scissors') || (input == 'rock' && rpcGameOutput == 'paper')|| (input == 'scissors' && rpcGameOutput == 'rock')) {
-   var myOutputValue = 'lose';
-  }
-  else if   ((input == 'scissors' && rpcGameOutput == 'paper') || (input == 'paper' && rpcGameOutput == 'rock')|| (input == 'rock' && rpcGameOutput == 'scissors'))  {
-    var myOutputValue = 'win';
-  }
-
-  return myOutputValue;
-  
+  return myOutputValue + " Your score is " + UserWinCounter + " The copmuter score is " + CompWinCounter;
 };
 
 
-
+// Computer randomly selecting what to throw
 
 var rockPaperScissors = function () {
-  var randomDecimal = Math.random() * 3;
-  var randomInteger = Math.floor ( randomDecimal );
+  var randomInteger = Math.floor (Math.random() * 3);
   var rpcResult = randomInteger + 1;
   
 
